@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <section class="Form formMargin">
+        <div class="container">
+            <div class="container-fluid">
+            <div class="row g-0" >
+                <div class="col-lg-5 img-div">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="login-img img-fluid w-100">
+                </div>
+                <div class="col-lg-7 inputPadding mt-lg-3">
+                    <h4 class="title pt-lg-5">Sign Up</h4>
+                    <hr>
+                    <form action="POST">
+                        <div class="form-row">
+                            <div class="col-lg-8">
+                                <input type="text" placeholder="Username" class="username-input form-control my-4 py-2">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-lg-8">
+                                <input type="email" placeholder="Email-Address" class="email-input form-control my-4 py-2">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-lg-8">
+                                <input type="password" placeholder="Password" class="pass-input form-control mt-4 py-2">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-lg-8">
+                                <input type="password" placeholder="Confirm Password" class="cfmpass-input form-control mt-4 py-2">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-lg-8">
+                                <button class="btn1  mt-3 mb-4">Sign Up</button>
+                            </div>
+                        </div>
+
+                        <p class="mt-2">Already have an account? <a href="/login">Login</a></p>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

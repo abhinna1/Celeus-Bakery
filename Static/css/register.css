@@ -1,0 +1,97 @@
+:root {
+    --mainColor:#ccae62;
+}
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+    /* background-color: red; */
+}
+body{
+    background-color: var(--mainColor);
+}
+.title{
+    padding-top:5rem;
+}
+
+hr{
+    width:67%;
+}
+
+.row{
+    background:#d1ccc0;
+    border-radius: 5px;
+}
+.login-img{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    width: inherit;
+}
+.logo{
+    width: 100px;
+}
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: 1000ms;
+}
+.btn1:hover{
+    background-color: white;
+    border: 1px solid;
+    color:black;
+    transition: 1000ms;
+    
+}
+.formMargin{
+    margin-top:1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+.inputPadding{
+    /* padding-left: 3rem;
+    padding-right: 3rem; */
+}
+
+@media all and (max-width: 981px) {
+    hr{
+        max-width: 100%;
+    }
+    .title{
+        padding-top:0px;
+    }
+    .formMargin{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .inputPadding{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+@media all and (min-width: 982px) {
+    .row{
+        width:100%
+    }
+}
+/* 
+@media (max-width: 990px) {
+    .row{
+        width:100% !important;
+    }
+    .img-div{
+        display: flex;
+        justify-content: center !important;
+
+    }
+    .username-input{
+        width:100%;
+        color: orange;
+    }
+  } */
