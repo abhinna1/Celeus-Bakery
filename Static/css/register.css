@@ -61,7 +61,7 @@ hr{
 
 @media all and (max-width: 981px) {
     hr{
-        max-width: 100%;
+        width: 100%;
     }
     .title{
         padding-top:0px;
