@@ -1,7 +1,11 @@
+{% extends './base/navbar.html' %}
+{% load static %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,41 +22,55 @@
                     <img src="{% static 'images/logo.png' %}" alt="" class="login-img img-fluid w-100">
                 </div>
                 <div class="col-lg-7 inputPadding mt-lg-3">
-                    <h4 class="title pt-lg-5">Sign Up</h4>
+                    <h4 class="title pt-lg-3">Sign Up</h4>
                     <hr>
-                    <form action="POST">
+                    <!-- {{form}} -->
+                    <form method="POST" action="/register/"> {% csrf_token %} 
                         <div class="form-row">
                             <div class="col-lg-8">
-                                <input type="text" placeholder="Username" class="username-input form-control my-4 py-2">
+                                <input type="text" placeholder="Username" name="username" class="username-input form-control mt-2 py-2">
+                                <p class='error-msg'>{{usernameEr}}</p>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="col-lg-8">
+                                <input type="email" placeholder="Email-Address" name="email" class="email-input form-control mt-2 py-2">
+                                <p class='error-msg'>{{emailEr}}</p>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-lg-8">
-                                <input type="email" placeholder="Email-Address" class="email-input form-control my-4 py-2">
+                                <input type="phone" placeholder="Phone" name="phone" class="phone-input form-control mt-2 py-2">
+                                <p class='error-msg'>{{phoneEr}}</p>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-lg-8">
-                                <input type="password" placeholder="Password" class="pass-input form-control mt-4 py-2">
+                                <input type="password" placeholder="Password" name="password" class="pass-input form-control mt-2 py-2">
+                                <p class='error-msg'>{{passwordEr}}</p>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-lg-8">
-                                <input type="password" placeholder="Confirm Password" class="cfmpass-input form-control mt-4 py-2">
+                                <input type="password" placeholder="Confirm Password" name="cfmPassword" class="cfmpass-input form-control mt-2 py-2">
+                                <p class='error-msg'>{{cfmEr}}</p>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-lg-8">
-                                <button class="btn1  mt-3 mb-4">Sign Up</button>
+                                <button class="btn1  mt-3 mb-3">Sign Up</button>
                             </div>
                         </div>
 
-                        <p class="mt-2">Already have an account? <a href="/login">Create new account</a></p>
+                        <p class="mt-0">Already have an account? <a href="/login">Create new account</a></p>
                     </form>
+                    
                     </div>
                 </div>
             </div>
@@ -61,3 +79,5 @@
 
 </body>
 </html>
+
+{% endblock %}

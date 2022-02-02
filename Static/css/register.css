@@ -54,6 +54,12 @@ hr{
     margin-left: 3rem;
     margin-right: 3rem;
 }
+.error-msg{
+    color: red !important;
+    text-align:left !important;
+    margin:0px !important;
+    margin-top: 0px !important;
+}
 .inputPadding{
     /* padding-left: 3rem;
     padding-right: 3rem; */
