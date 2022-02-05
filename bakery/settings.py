@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-%l(%7an3wd#yu#sr=lxh+e*ob*pzz3$dxzv&iiaz^=wmu5syv*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.68','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.1.67','127.0.0.1']
 
 
 # Application definition
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Login.apps.LoginConfig',
     'Register',
-    # 'Login'
+    'Categories',
+    'Product',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,7 @@ STATICFILES_DIRS=[str(BASE_DIR.joinpath('static')),]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# managing media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Media')
+MEDIA_URL = '/Media/'

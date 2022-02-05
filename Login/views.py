@@ -5,9 +5,13 @@ from django.core.validators import validate_email
 from django.contrib.auth import login, logout, authenticate, get_user_model;
 # Create your views here.
 
+def Acclogout(request):
+    logout(request)
+    return redirect('/login')
+
 def renderLogin(request):
     # logout(request)
-    print(request.user.username)
+    print(request.user.is_authenticated)
     if(request.method=='POST'):
         username = request.POST['username']
         password =  request.POST['password']

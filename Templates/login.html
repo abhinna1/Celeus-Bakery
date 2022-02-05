@@ -13,6 +13,19 @@
     
     <title>Document</title>
 </head>
+
+   <script>
+        $(window).on('scroll',()=>{
+          if($(window).scrollTop()){
+            $('nav').addClass('white')
+          }
+          else{
+            $('nav').removeClass('white')
+          }
+        })
+    </script>
+
+
 <body>
     <section class="Form formMargin">
         <div class="container">
@@ -22,7 +35,7 @@
                     <img src="{% static 'images/logo.png' %}" alt="" class="login-img img-fluid w-100">
                 </div>
                 <div class="col-lg-7 inputPadding mt-lg-3">
-                    <h4 class="title pt-lg-5 mt-lg-5">Sign Up</h4>
+                    <h4 class="title pt-lg-5 mt-lg-5">Login</h4>
                     <hr>
                     <form method="POST">  {% csrf_token %} 
 
@@ -42,11 +55,11 @@
 
                         <div class="form-row">
                             <div class="col-lg-8">
-                                <button class="btn1  mt-3 mb-4" type="submit">Sign Up</button>
+                                <button class="btn1 mt-3 mb-4" type="submit">Log In</button>
                             </div>
                         </div>
                         <a href="#">Forgot Password?</a>
-                        <p class="mt-2">Don't have an account? <a href="/register">Login</a></p>
+                        <p class="mt-2">Don't have an account? <a href="/register">Sign Up</a></p>
                     </form>
                     </div>
                 </div>
