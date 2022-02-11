@@ -60,10 +60,7 @@ hr{
     margin:0px !important;
     margin-top: 0px !important;
 }
-.inputPadding{
-    /* padding-left: 3rem;
-    padding-right: 3rem; */
-}
+
 
 @media all and (max-width: 981px) {
     hr{

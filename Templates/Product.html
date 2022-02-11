@@ -45,8 +45,8 @@
                             
                             <button class="btn btn-outline-dark">Buy Now</button>
                         </form>
-                        <form action="../Cart/CartOperation.php?pid=$pid" method="POST">
-                            <button class="btn btn-dark">Add to Cart</button> </div>
+                        <form action="/basket/insertbasket/{{data.id}}" method="GET">
+                            <button class="btn btn-dark"> Add to Basket </button> 
                         </form>
                 </div>
             </div>
