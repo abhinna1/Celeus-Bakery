@@ -27,6 +27,7 @@ urlpatterns = [
     path('logout/', views.Acclogout),
     path('product/', include('Product.urls')),
     path('category/', include('Categories.urls')),
+    path('basket/', include('Basket.urls')),
 ]
 
 if settings.DEBUG:

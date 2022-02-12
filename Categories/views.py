@@ -9,5 +9,3 @@ def categoryPage(request):
     data = Product.objects.filter(category_name_id = id)
     return render(request, 'categoryPage.html', {'data':data, 'category': category})
 
-def viewProduct(request):
-    return redirect(request, '/product?id=1')
