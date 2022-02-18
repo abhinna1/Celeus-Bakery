@@ -15,19 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Login import views
-
+from Basket.models import Basket
+from Login.views import *
+from Basket.views  import *
 from django.conf import settings
 from django.conf.urls. static import static
-
+from Checkout.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('Login.urls')),
     path('register/', include('Register.urls')),
-    path('logout/', views.Acclogout),
+    path('logout/', Acclogout),
     path('product/', include('Product.urls')),
     path('category/', include('Categories.urls')),
     path('basket/', include('Basket.urls')),
+    path('update_item/', insertBasket, name='update_item'),
+    path('removebasket/', removeBasket, name='remove_basket'),
+    path('orderProcess/', orderProcess, name='orderProcess'),
+
 ]
 
 if settings.DEBUG:
