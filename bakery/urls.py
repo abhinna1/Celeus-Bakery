@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Admin.views import AdminPanel
 from Basket.models import Basket
 from Login.views import *
 from Basket.views  import *
@@ -32,6 +33,9 @@ urlpatterns = [
     path('update_item/', insertBasket, name='update_item'),
     path('removebasket/', removeBasket, name='remove_basket'),
     path('orderProcess/', orderProcess, name='orderProcess'),
+    path('order/', viewOrderlist, name='orderlist'),
+    path('vieworder/', viewdetailorder, name='vieworder'),
+    path('adminproducts/', AdminPanel, name='adminproduct'),
 
 ]
 

@@ -1,0 +1,72 @@
+{% extends './base/navbar.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/basket.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card basket-card">
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <h5><b>My Orders</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                {% if orders %}
+                <ul class="list-group">
+                    <table class="table">
+                        <thead>
+                            <th>Order Number</th>
+                            <th>Shipping Address</th>
+                            <th>Order Date</th>
+                            <th>Delivered Status</th>
+                            <tr>                        
+                    {% for i in orders %}
+                    <tr>
+                            <td scope="col"><li class="list-group-item px-5">{{i.id}}</li></td>
+                            <td scope="col"><li class="list-group-item px-5">{{i.shippingInfo.address}}</li></td>
+                            <td scope="col"><li class="list-group-item px-5">{{i.shippingInfo.order_date}}</li></td>
+                            {% if i.delivered %}
+                            <td scope="col"><li class="list-group-item px-5"> Delivered</li></td>
+                            {% else %}
+                            <td scope="col" ><li class="list-group-item px-5">Not Delivered</li></td>
+                            {% endif %}
+                            <td scope="col" >
+                                <form action="/vieworder/" method='POST'>
+                                    {% csrf_token %}
+                                    <input type="hidden" name='basket', value={{i.basket.id}}>
+                                    <button class='btn btn-success' type='submit'>View Order</button>
+                                </form>
+                            </td>
+                    </tr>
+                        
+                    {% endfor %}
+                    </tr>
+                </thead>
+            </table>
+            </ul>
+
+        {% else %}
+            <div class="px-5">No orders available.</div>
+        {% endif %}
+        
+    </div>
+
+</body>
+</html>
+
+{% endblock %}

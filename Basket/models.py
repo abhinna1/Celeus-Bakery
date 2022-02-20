@@ -5,7 +5,6 @@ from Product.models import Product
 class Basket(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
-    order_date = models.DateField(null=True)
 
     @property
     def getBasketTotal(self):
@@ -18,7 +17,6 @@ class Basket(models.Model):
         count = self.itembasket_set.all().count()
         return count
 
-
     def __str__(self):
         return str(self.id)
 
@@ -26,7 +24,7 @@ class Basket(models.Model):
 class ItemBasket(models.Model):
     basket_id = models.ForeignKey(Basket, on_delete=models.CASCADE, null = True)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=0)
     
     @property
     def getTotal(self):

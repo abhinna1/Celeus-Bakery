@@ -55,8 +55,8 @@
                                                 <h5>{{i.description}}</h5>
                                                 <h3 class="product-old-price">Rs.{{i.price}}</h3>
                                             </div>
-                                                <button  class="btn btn-success" id="viewBtn">View</button>
-                                                <button class="btn btn-primary prod_id basketBtn" data-product='{{ i.id }}' data-action="addWithQty">Add to basket.</button>
+                                                <a href="/product/{{i.id}}"><button class="btn btn-success" id="viewBtn">View</button></a>
+                                                <button class="btn btn-primary prod_id basketBtn" data-product='{{ i.id }}' data-qty="0" data-action="addWithQty">Add to basket.</button>
                                     </div>
                                 </div>
                             </div>
@@ -66,18 +66,12 @@
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/7.0.0/d3.min.js"></script>
     <script>
-
-        document.getElementById('close-flash-btn').addEventListener('click', function(){
-            $('#flash-msg').removeClass('d-block').addClass('d-none').fadeOut('slow');
-        })
 
         let basketbtn1 = document.getElementsByClassName('basketBtn')
         for(let i=0; i<basketbtn1.length; i++){
-        
-            basketbtn1[i].addEventListener('click',function(){
-                $('#flash-msg').removeClass('d-none').addClass('d-block');
-                
+            basketbtn1[i].addEventListener('click',function(){                
                 console.log('flash')
                 var token = $('input[name = csrfmiddlewaretoken').val()
                 let productId = this.dataset.product
@@ -96,10 +90,12 @@
                         'Content-Type':'application/json',
                         'X-CSRFToken' : token,
                     },
-                    body: JSON.stringify({'productId':productId, 'action': action})
+                    body: JSON.stringify({'productId':productId, 'action': action, 'qty':1})
                 })
                 .then((response)=>{
+                    alert('added to cart.')
                     return response.json()
+                    
                 })
                 .then((data)=>{
                     console.log('data: ', data)

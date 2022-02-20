@@ -66,16 +66,16 @@
                     <form action="/orderProcess/" method='POST'>
                         {%csrf_token%}
                         <p>SHIPPING ADDRESS</p>
-                            <input type="text" name='address' class="text-muted" placeholder="Enter shipping address." id='addressInput'>
+                            <input type="text" class="text-muted" placeholder="Enter shipping address." id='addressInput' name="address">
                         <p>Phone Number</p>
-                            <input id="code" name='phone' placeholder="Enter your phone number" value={{request.user.phone}} id='phoneInput'>
+                            <input id="code" placeholder="Enter your phone number" value={{request.user.phone}} id='phoneInput' name="phone">
                         <div class="row">
                             <div class="col">Shipping Price is Rs.200 all over Kathmandu valley.</div>
                         </div>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">TOTAL PRICE</div>
                         <div class="col text-right">Rs. {{basket.getBasketTotal}}</div>
-                    </div><button class="btn order-btn" data-basketId = {{basket.id}} data-user = {{request.user.id}}>Place Order</button>
+                    </div><button class="btns order-btn" data-basketId = {{basket.id}} data-user = {{request.user.id}}>Place Order</button>
                     <input type="hidden" value={{basket.id}} id='basketId' name='basket'>
                     <input type="hidden" value={{request.user.id}} id='userId' name='user'>
                 </form>
