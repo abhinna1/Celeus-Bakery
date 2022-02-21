@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     'Basket',
     'Checkout',
     'Admin',
+    'crispy_forms',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -112,7 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL="Register.User"
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

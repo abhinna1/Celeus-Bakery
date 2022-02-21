@@ -9,6 +9,7 @@ class ShippingInfo (models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=10, null=True, blank=True)
     order_date = models.DateField(null=True)
+    is_delivered = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.address)

@@ -52,11 +52,34 @@ def getBasket(request):
     items = basket.itembasket_set.all()
     return render(request, 'basket.html', {'ItemBasket': items, 'basket': basket})
 
-
+@login_required(login_url='/login')
 def viewOrderlist(request):
     user = request.user
 
     if(user.is_authenticated):
-        orders = OrderShipping.objects.filter(user = request.user)
-                
-    return render(request, 'OrderList.html', {'orders': orders})
+        orders = OrderShipping.objects.filter(user = request.user)      
+        return render(request, 'OrderList.html', {'orders': orders})
+
+@login_required(login_url='/login')
+def incrementBasketProduct(request):
+    if request.method=='POST':
+        item_id = ItemBasket.objects.get(id = request.POST['id'])
+        item_id.quantity += 1
+        item_id.save()
+        return redirect('/basket')
+    else:
+        return redirect('/')
+
+@login_required(login_url='/login')
+def decrementBasketProduct(request):
+    if request.method=='POST':
+        item_id = ItemBasket.objects.get(id = request.POST['id'])
+        if(item_id.quantity-1>=1):
+            item_id.quantity -= 1
+            item_id.save()
+        else:
+            dataid = request.POST['id']
+            ItemBasket.objects.get(id = dataid).delete()
+        return redirect('/basket')
+    else:
+        return redirect('/')

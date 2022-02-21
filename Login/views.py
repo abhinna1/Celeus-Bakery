@@ -10,19 +10,20 @@ def Acclogout(request):
     return redirect('/login')
 
 def renderLogin(request):
-    # logout(request)
-    print(request.user.is_authenticated)
-    if(request.method=='POST'):
-        username = request.POST['username']
-        password =  request.POST['password']
-        
-        errors = {'usernameEr':'', 'passwordEr':''}
-        user=authenticate(request, username=username, password=password)
-        if(user is not None):
-            login(request, user)
-            return redirect('/register')
-        else:
-            errors['passwordEr'] = 'User not found.'
-            return render(request, 'login.html', errors)        
+    if request.user.is_authenticated:
+        return redirect('/')
     else:
-        return render(request, 'login.html')
+        if(request.method=='POST'):
+            username = request.POST['username']
+            password =  request.POST['password']
+            
+            errors = {'usernameEr':'', 'passwordEr':''}
+            user=authenticate(request, username=username, password=password)
+            if(user is not None):
+                login(request, user)
+                return redirect('/register')
+            else:
+                errors['passwordEr'] = 'User not found.'
+                return render(request, 'login.html', errors)        
+        else:
+            return render(request, 'login.html')

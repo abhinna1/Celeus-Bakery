@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Admin.views import AdminPanel
+from Admin.views import *
 from Basket.models import Basket
 from Login.views import *
 from Basket.views  import *
@@ -24,18 +24,26 @@ from django.conf.urls. static import static
 from Checkout.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', include('Login.urls')),
-    path('register/', include('Register.urls')),
+    path('login/', include('Login.urls'), name='login'),
+    path('register/', include('Register.urls'), name='register'),
     path('logout/', Acclogout),
-    path('product/', include('Product.urls')),
+    path('product/', include('Product.urls'), name='product'),
     path('category/', include('Categories.urls')),
     path('basket/', include('Basket.urls')),
     path('update_item/', insertBasket, name='update_item'),
     path('removebasket/', removeBasket, name='remove_basket'),
+    path('incrementBasketProduct/', incrementBasketProduct, name='incrementBasketProduct'),
+    path('decrementBasketProduct/', decrementBasketProduct, name='decrementBasketProduct'),
     path('orderProcess/', orderProcess, name='orderProcess'),
     path('order/', viewOrderlist, name='orderlist'),
     path('vieworder/', viewdetailorder, name='vieworder'),
-    path('adminproducts/', AdminPanel, name='adminproduct'),
+    path('adminorders/', AdminPanel, name='adminorders'),
+    path('adminvieworder/', adminViewOrder, name='adminvieworder'),
+    path('adminViewProduct/', adminviewProductList, name='adminViewProduct'),
+    path('addProductForm/', addProductAdminForm, name='addProductForm'),
+    path('editProductForm/<int:product_id>', editProductForm, name='editProductForm'),
+
+
 
 ]
 

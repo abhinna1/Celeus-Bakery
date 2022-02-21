@@ -32,8 +32,13 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="/category?id=1">Cakes</a>
-                <a class="dropdown-item" href="#">Cookies</a>
-                <a class="dropdown-item" href="#">French</a>
+                <a class="dropdown-item" href="/category?id=2">Tarts</a>
+                <a class="dropdown-item" href="/category?id=3">Cookies</a>
+                <a class="dropdown-item" href="/category?id=4">Ice Creams</a>
+                <a class="dropdown-item" href="/category?id=5">Mousse</a>
+                <a class="dropdown-item" href="/category?id=6">Pastries</a>
+                <a class="dropdown-item" href="/category?id=7">Bread</a>
+
               </div>
             </li>
         
@@ -42,6 +47,8 @@
             <li class="nav-item mx-3"><a href="#" class="nav-link">Resources</a></li>
         
             <li class="nav-item mx-3"><a href="#" class="nav-link">Founder</a></li>
+
+            
             {% if not request.user.is_authenticated %}
             <li class="nav-item mx-3"><a href="/register" class="nav-link">Sign Up</a></li>
         
@@ -56,6 +63,9 @@
                 <a class="dropdown-item" href="/basket">My Basket</a>
                 <a class="dropdown-item" href="/order">My Orders</a>
                 <a class="dropdown-item" href="#">Edit My Profile</a>
+                {% if request.user.is_superuser %}
+                  <a href="/adminViewProduct/" class="dropdown-item">Admin Panel</a>
+                {%endif%}
                 <a href='/logout' class="dropdown-item">Log Out</a>
               </div>
             </li>

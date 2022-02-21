@@ -35,7 +35,6 @@ a:hover {
 
 .section-products .single-product .part-1 {
     position: relative;
-    height: 290px;
     max-height: 290px;
     margin-bottom: 20px;
     overflow: hidden;
@@ -54,7 +53,7 @@ a:hover {
 
 .product-image{
     width:100%;
-    height:auto;
+    height:300px;
 }
 
 .section-products .single-product:hover .part-1::before {

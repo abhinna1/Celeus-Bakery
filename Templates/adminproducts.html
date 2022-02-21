@@ -10,7 +10,40 @@
     <title>Celeus's Bakery</title>
 </head>
 <body>
-    
+    <h1 class='d-flex my-3'>All orders</h1>
+    <table class="table my-0">
+        <thead>
+          <tr>
+            <th scope="col">Order Number</th>
+            <th scope="col">User</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Delivery Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for i in shipping %}
+          <tr>
+            <th scope="row">{{i.basket.id}}</th>
+            <td>{{i.user.username}}</td>
+            <td>{{i.shippingInfo.order_date}}</td>
+            {% if i.shippingInfo.is_delivered %}
+                <td>Delivered</td>
+            {% else %}
+                <td>Not Delivered</td>
+            {% endif %}
+            <form action="/adminvieworder/" method='POST'>
+                {% csrf_token %}
+                <input type="hidden" value={{i.basket.id}} name='basket'>
+                <td><button class='btn btn-primary'>View Order</button></td>
+            </form>
+            <td><button class='btn btn-success'>Update Order</button></td>
+            <td><button class='btn btn-danger'>Delete Order</button></td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      
 </body>
 </html>
 {% endblock %}

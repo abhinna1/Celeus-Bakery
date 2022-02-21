@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-{% csrf_token %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +15,7 @@
         <title>Celeus's Bakery</title>
     </head>
     <body>
-        <div class="alert alert-{{ message.tags }}">
-            xyz
-        </div>
+
         <div class="card basket-card">
             <div class="row">
                 <div class="col-md-8 cart">
@@ -41,7 +38,23 @@
                                 <div class="row text-muted">{{i.product_id.category_name}}</div>
                                 <div class="row">{{i.product_id.product_name}}</div>
                             </div>
-                            <div class="col"> <a href="#">-</a><a href="#" class="border">{{i.quantity}}</a><a href="#">+</a> </div>
+                            
+                            <div class="col"> 
+                                <form action="/decrementBasketProduct/" method='POST'>
+                                    {% csrf_token %}
+                                        <input type="hidden" value={{i.id}} name='id'>
+                                        <button type='submit' style='display: inline-block; background:transparent;'>-</button>
+                                    </form>
+                                
+                                <a href="#" class="border">{{i.quantity}}</a>
+                                
+                                <form action="/incrementBasketProduct/" method='POST'>
+                                {% csrf_token %}
+                                    <input type="hidden" value={{i.id}} name='id'>
+                                    <button type='submit' style='display: inline-block; background:transparent;'>+</button>
+                                </form>
+                                
+                            </div>
                             <div class="col">
                                     Rs. {{i.getTotal}} <span class="close"></span>
                                     {% csrf_token %}

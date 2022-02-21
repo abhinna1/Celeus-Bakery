@@ -46,4 +46,3 @@ def viewdetailorder(request):
         sum = sum + i.product_id.price
     # return render(request, 'basket.html', {'ItemBasket': items, 'basket': basket})
     return render(request, 'detailOrder.html', {'items': items, 'basket': basket, 'sum': sum})
-
