@@ -1,0 +1,74 @@
+{% extends './base/navbar.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href='{% static "css/homepage.css" %}'>
+    <title>Celeus's Bakery</title>
+</head>
+<body>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active caradiv">
+            <img src="{% static 'images/carasol-1.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item caradiv">
+            <img src="{% static 'images/carasol-2.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item caradiv">
+            <img src="{% static 'images/carasol-3.jpg' %}" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+      </div>
+
+
+
+
+      <div class="container marketing mt-5 bodydiv">
+
+        <div class="row">
+          <div class="constainer pt-3">
+            <h1>Popular Categories</h1>
+          </div>
+          <div class="col-lg-4 pt-3">
+            <img class="rounded-circle" src="{% static 'images/cheesecake.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+            <h2>Cakes</h2>
+            <p><a class="btn btn-primary" href="/category/?id=1" role="button">View Category »</a></p>
+          </div>
+          <div class="col-lg-4 pt-3">
+            <img class="rounded-circle" src="{% static 'images/tart.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+            <h2>Tarts</h2>
+            <p><a class="btn btn-primary" href="/category/?id=2" role="button">View Category »</a></p>
+          </div>
+          <div class="col-lg-4 pt-3">
+            <img class="rounded-circle" src="{% static 'images/cookie.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+            <h2>Cookies</h2>
+            <p><a class="btn btn-primary" href="/category/?id=3" role="button">View Category »</a></p>
+          </div>
+        </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+  
+
+</html>
+
+{% endblock %}

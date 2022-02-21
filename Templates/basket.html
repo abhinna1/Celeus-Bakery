@@ -22,7 +22,7 @@
                     <div class="title">
                         <div class="row">
                             <div class="col">
-                                <h5><b>Shopping Cart</b></h5>
+                                <h5><b>My Basket</b></h5>
                                 <div class="col align-self-center text-right text-muted">{{basket.getBasketCount}} items</div>
                             </div>
                         </div>
@@ -42,16 +42,16 @@
                             <div class="col"> 
                                 <form action="/decrementBasketProduct/" method='POST'>
                                     {% csrf_token %}
-                                        <input type="hidden" value={{i.id}} name='id'>
-                                        <button type='submit' style='display: inline-block; background:transparent;'>-</button>
+                                        <input type="hidden" value={{i.id}} name='id' style='border:0'>
+                                        <button type='submit' style='display: inline-block; background:transparent; border:0'>-</button>
                                     </form>
                                 
                                 <a href="#" class="border">{{i.quantity}}</a>
                                 
-                                <form action="/incrementBasketProduct/" method='POST'>
+                                <form action="/incrementBasketProduct/" method='POST' style='border:0'>
                                 {% csrf_token %}
                                     <input type="hidden" value={{i.id}} name='id'>
-                                    <button type='submit' style='display: inline-block; background:transparent;'>+</button>
+                                    <button type='submit' style='display: inline-block; background:transparent; border:0;'>+</button>
                                 </form>
                                 
                             </div>
@@ -79,11 +79,11 @@
                     <form action="/orderProcess/" method='POST'>
                         {%csrf_token%}
                         <p>SHIPPING ADDRESS</p>
-                            <input type="text" class="text-muted" placeholder="Enter shipping address." id='addressInput' name="address">
+                            <input type="text" class="text-muted" placeholder="Enter shipping address." id='addressInput' name="address" required>
                         <p>Phone Number</p>
-                            <input id="code" placeholder="Enter your phone number" value={{request.user.phone}} id='phoneInput' name="phone">
+                            <input id="code" placeholder="Enter your phone number" value={{request.user.phone}} id='phoneInput' name="phone" required>
                         <div class="row">
-                            <div class="col">Shipping Price is Rs.200 all over Kathmandu valley.</div>
+                            Free Shipping Offer For Opening Bonus.
                         </div>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">TOTAL PRICE</div>

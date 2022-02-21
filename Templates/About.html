@@ -1,0 +1,32 @@
+{% extends './base/navbar.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container d-flex justify-content-center ">
+        <div class="row w-50 align-middle">
+            <div class="title d-flex justify-content-center">
+                <h1>About the owner</h1>
+            </div>
+            <div class="img-fluid d-flex justify-content-center">
+                <img src="{% static 'images/Celeus.jpg' %}" class="rounded-circle" style="width:40%">
+            </div>
+            Celeus Baral, a passionate baker and cook from kathmandu. started baking really young and have been doing it since as a pastime. Since then she decided that she wanted to start an online business and
+            sell perishable tasty food
+            She has been doing this for a long time and wanted to share her art of baking and cooking with an audience and is much easier since she can have control of her personal time and schedule as well as bake learn more about expanding her work and desire for her creative side.
+
+        </div>
+    </div>
+    </body>
+</html>
+{% endblock %}

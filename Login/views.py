@@ -21,7 +21,7 @@ def renderLogin(request):
             user=authenticate(request, username=username, password=password)
             if(user is not None):
                 login(request, user)
-                return redirect('/register')
+                return redirect('/')
             else:
                 errors['passwordEr'] = 'User not found.'
                 return render(request, 'login.html', errors)        

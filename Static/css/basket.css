@@ -112,7 +112,9 @@ hr {
 }
 
 form {
-  padding: 2vh 0
+  padding: 2vh 0;
+  display: inline-block !important;
+
 }
 
 select {
@@ -145,7 +147,8 @@ input:focus::-webkit-input-placeholder {
   font-size: 0.7rem;
   margin-top: 4vh;
   padding: 1vh;
-  border-radius: 0
+  border-radius: 0;
+
 }
 
 .btns:focus {

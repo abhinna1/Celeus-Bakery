@@ -33,16 +33,14 @@ def orderProcess(request):
 
 @login_required(login_url='/login')
 def viewdetailorder(request):
-    customer = request.user
     basketid = request.POST['basket']
-    print('basket:::', basketid)
-
     basket = Basket.objects.get(id = basketid)
+    shipping = OrderShipping.objects.get(basket = basket)
+    print('shipping address', shipping)
 
     print(basket)
     items = ItemBasket.objects.filter(basket_id = basket)
     sum = 0
     for i in items:
         sum = sum + i.product_id.price
-    # return render(request, 'basket.html', {'ItemBasket': items, 'basket': basket})
-    return render(request, 'detailOrder.html', {'items': items, 'basket': basket, 'sum': sum})
+    return render(request, 'detailOrder.html', {'items': items, 'basket': basket, 'sum': sum, 'shipping': shipping})

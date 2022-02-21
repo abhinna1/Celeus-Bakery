@@ -36,8 +36,22 @@
                 <input type="hidden" value={{i.basket.id}} name='basket'>
                 <td><button class='btn btn-primary'>View Order</button></td>
             </form>
-            <td><button class='btn btn-success'>Update Order</button></td>
-            <td><button class='btn btn-danger'>Delete Order</button></td>
+            {%if not i.shippingInfo.is_delivered %}
+              <td>
+                <input type="hidden" name='updated' value='update'>
+                <a href="/toggledelivered/{{i.basket.id}}" class='btn btn-success'>Set Delivered</a></button>
+              </td>
+            {% else %}
+              <td>
+                <input type="hidden" name='updated' value='update'>
+                <a href="/toggledelivered/{{i.basket.id}}" class='btn btn-danger'>Set Undelivered</a></button>
+              </td>
+              {% endif %}
+              <form action="/adminDeleteorderOrder/" method='POST'>
+                {% csrf_token %}
+                <input type="hidden" value={{i.basket.id}} name='basket'>
+                <td><button class='btn btn-danger'>Delete Order</button></td>
+              </form>
 
           </tr>
         {% endfor %}

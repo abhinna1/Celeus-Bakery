@@ -41,7 +41,7 @@
                             <td scope="col">{{i.id}}</td>
                             <td scope="col">{{i.shippingInfo.address}}</td>
                             <td scope="col">{{i.shippingInfo.order_date}}</td>
-                            {% if i.delivered %}
+                            {% if i.shippingInfo.is_delivered %}
                             <td scope="col"> Delivered</td>
                             {% else %}
                             <td scope="col" >Not Delivered</td>

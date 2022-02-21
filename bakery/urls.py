@@ -22,8 +22,10 @@ from Basket.views  import *
 from django.conf import settings
 from django.conf.urls. static import static
 from Checkout.views import *
+from Home.views import AboutPage, ServicesPage, homepage
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', homepage, name='home'),
     path('login/', include('Login.urls'), name='login'),
     path('register/', include('Register.urls'), name='register'),
     path('logout/', Acclogout),
@@ -42,6 +44,12 @@ urlpatterns = [
     path('adminViewProduct/', adminviewProductList, name='adminViewProduct'),
     path('addProductForm/', addProductAdminForm, name='addProductForm'),
     path('editProductForm/<int:product_id>', editProductForm, name='editProductForm'),
+    path('toggledelivered/<int:basket_id>', toggledelivered, name='toggledelivered'),
+    path('adminDeleteorderOrder/', adminDeleteorderOrder, name='adminDeleteorderOrder'),
+    path('about/', AboutPage, name='about'),
+    path('services/', ServicesPage, name='services'),
+
+    
 
 
 

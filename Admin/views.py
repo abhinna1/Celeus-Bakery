@@ -49,7 +49,7 @@ def addProductAdminForm(request):
         if form.is_valid():
             form.save()
             print('form save')
-            return redirect('/adminviewproducts')
+            return redirect('/adminViewProduct')
     else:
         form = ProductForm()
 
@@ -83,3 +83,15 @@ def editProductForm(request, product_id):
 
     return render(request,'editProductForm.html',context)
 
+
+def toggledelivered(request, basket_id):
+    basket = Basket.objects.get(id = basket_id)
+    ordershipping = OrderShipping.objects.get(basket = basket)
+    ordershipping.shippingInfo.is_delivered = not ordershipping.shippingInfo.is_delivered
+    ordershipping.shippingInfo.save()
+    return redirect('/adminorders')
+
+def adminDeleteorderOrder(request):
+    if request.method=='POST':
+        basket = request.POST['basket_id']
+        Basket.objects.get(id = basket).delete()
