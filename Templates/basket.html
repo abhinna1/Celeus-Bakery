@@ -1,0 +1,157 @@
+
+{% extends './base/navbar.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/basket.css' %}">
+        <title>Celeus's Bakery</title>
+    </head>
+    <body>
+
+        <div class="card basket-card">
+            <div class="row">
+                <div class="col-md-8 cart">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col">
+                                <h5><b>My Basket</b></h5>
+                                <div class="col align-self-center text-right text-muted">{{basket.getBasketCount}} items</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    {% if ItemBasket %}
+                    {% for i in ItemBasket %}
+
+                    <div class="row">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src={{i.product_id.image.url}}></div>
+                            <div class="col">
+                                <div class="row text-muted">{{i.product_id.category_name}}</div>
+                                <div class="row">{{i.product_id.product_name}}</div>
+                            </div>
+                            
+                            <div class="col"> 
+                                <form action="/decrementBasketProduct/" method='POST'>
+                                    {% csrf_token %}
+                                        <input type="hidden" value={{i.id}} name='id' style='border:0'>
+                                        <button type='submit' style='display: inline-block; background:transparent; border:0'>-</button>
+                                    </form>
+                                
+                                <a href="#" class="border">{{i.quantity}}</a>
+                                
+                                <form action="/incrementBasketProduct/" method='POST' style='border:0'>
+                                {% csrf_token %}
+                                    <input type="hidden" value={{i.id}} name='id'>
+                                    <button type='submit' style='display: inline-block; background:transparent; border:0;'>+</button>
+                                </form>
+                                
+                            </div>
+                            <div class="col">
+                                    Rs. {{i.getTotal}} <span class="close"></span>
+                                    {% csrf_token %}
+                                    <button style="background:transparent; border:0;" class="remove-btn" data-id={{i.id}}>&#10005;</button></span></div>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    
+                    <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+                </div>
+                <div class="col-md-4 summary">
+                    <div>
+                        <h5><b>Summary</b></h5>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col" style="padding-left:0;">{{basket.getBasketCount}} ITEMS</div>
+                        <div class="col text-right">Rs. {{basket.getBasketTotal}}</div>
+                    </div>
+                    <form action="/orderProcess/" method='POST'>
+                        {%csrf_token%}
+                        <p>SHIPPING ADDRESS</p>
+                            <input type="text" class="text-muted" placeholder="Enter shipping address." id='addressInput' name="address" required>
+                        <p>Phone Number</p>
+                            <input id="code" placeholder="Enter your phone number" value={{request.user.phone}} id='phoneInput' name="phone" required>
+                        <div class="row">
+                            Free Shipping Offer For Opening Bonus.
+                        </div>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">Rs. {{basket.getBasketTotal}}</div>
+                    </div><button class="btns order-btn" data-basketId = {{basket.id}} data-user = {{request.user.id}}>Place Order</button>
+                    <input type="hidden" value={{basket.id}} id='basketId' name='basket'>
+                    <input type="hidden" value={{request.user.id}} id='userId' name='user'>
+                </form>
+                </div>
+            </div>
+            {% else %}
+                <div class="px-5">No products in basket.</div>
+            {% endif %}
+            
+        </div>
+
+    </body>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/7.0.0/d3.min.js"></script>
+    <script>
+        var m = document.getElementsByClassName("alert");  // Return an array
+                setTimeout(function(){
+                if (m && m.length) {
+                    m[0].classList.add('hide');
+                }
+                }, 3000);
+
+
+        let removeBtn = document.getElementsByClassName('remove-btn')
+        
+       for(let i=0; i<removeBtn.length; i++){
+           console.log('mesasge: {{message}}')
+            removeBtn[i].addEventListener('click',function(){
+
+                var token = $('input[name = csrfmiddlewaretoken').val()
+                let id = this.dataset.id
+
+                let qty = this.dataset.qty
+                
+                console.log('User Logged in,', 'Sending Data...')
+                console.log('id:', id)
+
+                let url = '/removebasket/'
+
+                fetch(url, {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type':'application/json',
+                        'X-CSRFToken' : token,
+                    },
+                    body: JSON.stringify({'id':id})
+                })
+                .then((response)=>{
+                    console.log('respose:::', response)
+                    return response.json()
+                })
+                .then((data)=>{
+                    // console.log('data: ', data)
+                    location.reload()
+                })
+        
+            })
+        
+       }
+        
+    
+    </script>
+</html>
+
+{% endblock %}

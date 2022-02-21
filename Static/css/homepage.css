@@ -1,0 +1,15 @@
+.caradiv{
+    height: 800px !important;
+    vertical-align: middle !important;
+}
+body{
+    background-color: #bdc3c7;
+}
+.bodydiv{
+    background-color: #ecf0f1;
+}
+
+.carousel-inner > .item > img {
+    width:640px !important;
+    height:360px !important;
+  }

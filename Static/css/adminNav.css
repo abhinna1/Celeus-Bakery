@@ -1,0 +1,66 @@
+
+.nav{
+    background-color:rgb(83, 80, 80) !important;
+}
+
+.logo-img{
+    width: 100px;
+}
+.navbar{
+    background-color: red;
+}
+.navbar .nav-link{
+    color:black;
+
+}
+.nav-div{
+    justify-content: center;
+}
+.cara{
+    width:100%;
+}
+
+.navbar .active{
+    color: #0087ca !important;
+}
+.container-cara{
+    height:40vh;
+    background-color: red;
+}
+
+
+.navbar .nav-link {
+    display: inline-block;
+    position: relative;
+    color: #0087ca;
+  }
+  .navbar .nav-link:hover{
+    color: #0087ca  !important;
+
+  }
+  .navbar .nav-link:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 0.1px !important;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .navbar .nav-link:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+.cara-img{
+    height: 600px;;
+}
+.contact-img{
+    width:20px;
+}
+
+

@@ -1,0 +1,63 @@
+{% extends './base/adminNav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celeus's Bakery</title>
+</head>
+<body>
+    <h1 class='d-flex my-3'>All orders</h1>
+    <table class="table my-0">
+        <thead>
+          <tr>
+            <th scope="col">Order Number</th>
+            <th scope="col">User</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Delivery Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for i in shipping %}
+          <tr>
+            <th scope="row">{{i.basket.id}}</th>
+            <td>{{i.user.username}}</td>
+            <td>{{i.shippingInfo.order_date}}</td>
+            {% if i.shippingInfo.is_delivered %}
+                <td>Delivered</td>
+            {% else %}
+                <td>Not Delivered</td>
+            {% endif %}
+            <form action="/adminvieworder/" method='POST'>
+                {% csrf_token %}
+                <input type="hidden" value={{i.basket.id}} name='basket'>
+                <td><button class='btn btn-primary'>View Order</button></td>
+            </form>
+            {%if not i.shippingInfo.is_delivered %}
+              <td>
+                <input type="hidden" name='updated' value='update'>
+                <a href="/toggledelivered/{{i.basket.id}}" class='btn btn-success'>Set Delivered</a></button>
+              </td>
+            {% else %}
+              <td>
+                <input type="hidden" name='updated' value='update'>
+                <a href="/toggledelivered/{{i.basket.id}}" class='btn btn-danger'>Set Undelivered</a></button>
+              </td>
+              {% endif %}
+              <form action="/adminDeleteorderOrder/" method='POST'>
+                {% csrf_token %}
+                <input type="hidden" value={{i.basket.id}} name='basket'>
+                <td><button class='btn btn-danger'>Delete Order</button></td>
+              </form>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      
+</body>
+</html>
+{% endblock %}
